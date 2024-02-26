@@ -217,46 +217,10 @@ export default function Page({
               className="underline"
               onClick={(e) => {
                 e.preventDefault();
-                router.push(`?url=${baseUrl}`);
-              }}
-            >
-              Home
-            </button>
-            <button
-              className="underline"
-              onClick={(e) => {
-                e.preventDefault();
-                router.push(`?url=${baseUrl}/examples/user-data`);
-              }}
-            >
-              User data
-            </button>
-            <button
-              className="underline"
-              onClick={(e) => {
-                e.preventDefault();
                 router.push(`?url=${baseUrl}/examples/multi-page`);
               }}
             >
               Multi-page
-            </button>
-            <button
-              className="underline"
-              onClick={(e) => {
-                e.preventDefault();
-                router.push(`?url=${baseUrl}/examples/mint-button`);
-              }}
-            >
-              Mint button
-            </button>
-            <button
-              className="underline"
-              onClick={(e) => {
-                e.preventDefault();
-                router.push(`?url=${baseUrl}/examples/multi-protocol`);
-              }}
-            >
-              Multi-protocol
             </button>
           </div>
           <LoginWindow

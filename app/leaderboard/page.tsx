@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 import { redis } from "../examples/multi-page/components/redis/config";
 import { Leaderboard } from "../examples/multi-page/page";
-import { UserRound } from "lucide-react";
+import { Star, UserRound } from "lucide-react";
 
 export default async function LeaderboardPage() {
   const leaderBoardData: Leaderboard | null = await redis.get(
@@ -15,12 +15,12 @@ export default async function LeaderboardPage() {
       <div className="flex flex-col justify-center items-center w-full h-full">
         <h1>Leaderboard</h1>
 
-        <div className="flex flex-row text-center justify-start items-start w-full px-10 mt-10">
+        <div className="flex flex-row text-center justify-start items-start w-full px-10 mt-10 text-lg">
           <h1 className="w-[40px] flex">#</h1>
           <h1 className="w-[40px] flex">User</h1>
           <h1 className="w-[40px] flex flex-grow justify-end">Points</h1>
         </div>
-        <div className="flex flex-col justify-start items-center w-full flex-grow mt-5">
+        <div className="flex flex-col justify-start items-center w-full flex-grow mt-5 text-lg">
           {leaderBoardData.scores
             .sort((a, b) => b.score - a.score)
             .map((user, index) => {
@@ -29,7 +29,9 @@ export default async function LeaderboardPage() {
                   key={index}
                   className="flex items-center w-full px-10 py-3 border-b border-gray-600"
                 >
-                  <h1 className="w-[40px]">{index + 1}</h1>
+                  <h1 className="flex relative w-[40px] justify-start items-center font-bold text-2xl">
+                    {index + 1}
+                  </h1>
                   <div className="flex items-center justify-start flex-grow w-[40px] gap-5">
                     {user.imageUrl !== "" ? (
                       <NextImage
