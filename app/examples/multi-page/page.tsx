@@ -210,7 +210,7 @@ export default async function Home({
               <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
                 <img
                   tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/c351b828-905a-4ff2-af48-413ebdd6c54a/Inserirumsubttulo.png"
+                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
                   alt="bg"
                 />
                 {state.userAnswer === quiz[0]?.correct ? (
@@ -304,7 +304,7 @@ export default async function Home({
               <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
                 <img
                   tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/c351b828-905a-4ff2-af48-413ebdd6c54a/Inserirumsubttulo.png"
+                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
                   alt="bg"
                 />
                 {state.userAnswer === quiz[1]?.correct ? (
@@ -398,7 +398,7 @@ export default async function Home({
               <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
                 <img
                   tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/c351b828-905a-4ff2-af48-413ebdd6c54a/Inserirumsubttulo.png"
+                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
                   alt="bg"
                 />
                 {state.userAnswer === quiz[2]?.correct ? (
@@ -492,7 +492,7 @@ export default async function Home({
               <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
                 <img
                   tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/c351b828-905a-4ff2-af48-413ebdd6c54a/Inserirumsubttulo.png"
+                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
                   alt="bg"
                 />
                 {state.userAnswer === quiz[3]?.correct ? (
@@ -586,7 +586,7 @@ export default async function Home({
               <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
                 <img
                   tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/c351b828-905a-4ff2-af48-413ebdd6c54a/Inserirumsubttulo.png"
+                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
                   alt="bg"
                 />
                 {state.userAnswer === quiz[4]?.correct ? (
@@ -696,7 +696,7 @@ export default async function Home({
               <div tw="relative flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
                 <img
                   tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/c351b828-905a-4ff2-af48-413ebdd6c54a/Inserirumsubttulo.png"
+                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
                   alt="bg"
                 />
                 <h1 tw="text-[50px]">Total Score: 130</h1>
@@ -721,7 +721,7 @@ export default async function Home({
               <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
                 <img
                   tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/c351b828-905a-4ff2-af48-413ebdd6c54a/Inserirumsubttulo.png"
+                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
                   alt="bg"
                 />
                 <h1 tw="absolute top-0 m-auto text-[40px]">LEADERBOARD</h1>
@@ -791,7 +791,7 @@ export default async function Home({
           <div tw="flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white relative">
             <img
               tw="absolute top-0 m-auto"
-              src="https://ucarecdn.com/c351b828-905a-4ff2-af48-413ebdd6c54a/Inserirumsubttulo.png"
+              src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
               alt="bg"
             />
             <img
