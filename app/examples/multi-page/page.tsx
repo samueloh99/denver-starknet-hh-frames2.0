@@ -13,12 +13,14 @@ import { quizSchema, redis } from "./components/redis/config";
 import { ActionIndex } from "frames.js";
 import { DEBUG_HUB_OPTIONS } from "../../debug/constants";
 
-type Leaderboard = {
+export type Leaderboard = {
   name: string;
   scores: [
     {
       score: number;
       userName: string;
+      displayName: string;
+      imageUrl: string;
     }
   ];
 };
@@ -239,10 +241,15 @@ export default async function Home({
         (item) => item.userName === frameMessage?.requesterUserData?.username
       );
 
+      frameMessage?.requesterUserData?.username;
       if (userIndex === -1) {
         leaderBoardData.scores.push({
           userName: frameMessage?.requesterUserData?.username as string,
           score: totalScore,
+          displayName: frameMessage?.requesterUserData?.displayName as string,
+          imageUrl: frameMessage?.requesterUserData?.profileImage
+            ? frameMessage?.requesterUserData?.profileImage
+            : "",
         });
       }
 
