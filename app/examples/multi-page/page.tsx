@@ -12,7 +12,7 @@ import {
 import { quizSchema, redis } from "./components/redis/config";
 import { ActionIndex } from "frames.js";
 import { DEBUG_HUB_OPTIONS } from "../../debug/constants";
-import { CheckCircle2 } from "lucide-react";
+import AnswerContainer from "./components/answer-container";
 
 export type Leaderboard = {
   name: string;
@@ -181,11 +181,7 @@ export default async function Home({
             state={state}
             previousFrame={previousFrame}
           >
-            <FrameImage>
-              <div tw="flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img src={quiz[0] && quiz[0].imageURL} alt="Image" />
-              </div>
-            </FrameImage>
+            {quiz[0] && <FrameImage src={quiz[0]?.imageURL}></FrameImage>}
 
             {
               quiz[0]?.answers.map((answer, index) => {
@@ -199,72 +195,12 @@ export default async function Home({
     case "answer-1":
       await redis.set("answer-1", state.userAnswer);
       return (
-        <div>
-          <FrameContainer
-            pathname="/examples/multi-page"
-            postUrl="/examples/multi-page/frames"
-            state={state}
-            previousFrame={previousFrame}
-          >
-            <FrameImage>
-              <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img
-                  tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
-                  alt="bg"
-                />
-                {state.userAnswer === quiz[0]?.correct ? (
-                  <div tw="flex flex-row justify-center items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="80"
-                      height="80"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#19b82c"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="lucide lucide-check-circle-2"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                    <h1 tw="text-[50px] text-[#19b82c] pl-5">
-                      {quiz[0]?.answers[state.userAnswer as number]}
-                    </h1>
-                  </div>
-                ) : (
-                  <div tw="flex flex-col">
-                    <h1 tw="text-[60px] flex flex-row justify-center items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="80"
-                        height="80"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#b81929"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="lucide lucide-x-circle"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="m15 9-6 6" />
-                        <path d="m9 9 6 6" />
-                      </svg>
-                      <h1 tw="text-[60px] text-[#b81929] pl-10">
-                        {quiz[0]?.answers[state.userAnswer as number]}
-                      </h1>
-                    </h1>
-                    Correct answer: {quiz[0]?.answers[quiz[0].correct]}
-                  </div>
-                )}
-              </div>
-            </FrameImage>
-            <FrameButton>Next Question</FrameButton>
-          </FrameContainer>
-        </div>
+        <AnswerContainer
+          previousFrame={previousFrame}
+          quiz={quiz}
+          state={state}
+          position={0}
+        />
       );
 
     case "question-2":
@@ -276,11 +212,8 @@ export default async function Home({
             state={state}
             previousFrame={previousFrame}
           >
-            <FrameImage>
-              <div tw="flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img src={quiz[1] && quiz[1].imageURL} alt="Image" />
-              </div>
-            </FrameImage>
+            {quiz[1] && <FrameImage src={quiz[1]?.imageURL}></FrameImage>}
+
             {
               quiz[1]?.answers.map((answer, index) => (
                 <FrameButton key={index}>{answer}</FrameButton>
@@ -293,72 +226,12 @@ export default async function Home({
     case "answer-2":
       await redis.set("answer-2", state.userAnswer);
       return (
-        <div>
-          <FrameContainer
-            pathname="/examples/multi-page"
-            postUrl="/examples/multi-page/frames"
-            state={state}
-            previousFrame={previousFrame}
-          >
-            <FrameImage>
-              <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img
-                  tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
-                  alt="bg"
-                />
-                {state.userAnswer === quiz[1]?.correct ? (
-                  <div tw="flex flex-row justify-center items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="80"
-                      height="80"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#19b82c"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="lucide lucide-check-circle-2"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                    <h1 tw="text-[50px] text-[#19b82c] pl-5">
-                      {quiz[1]?.answers[state.userAnswer as number]}
-                    </h1>
-                  </div>
-                ) : (
-                  <div tw="flex flex-col">
-                    <h1 tw="text-[60px] flex flex-row justify-center items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="80"
-                        height="80"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#b81929"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="lucide lucide-x-circle"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="m15 9-6 6" />
-                        <path d="m9 9 6 6" />
-                      </svg>
-                      <h1 tw="text-[60px] text-[#b81929] pl-10">
-                        {quiz[1]?.answers[state.userAnswer as number]}
-                      </h1>
-                    </h1>
-                    Correct answer: {quiz[1]?.answers[quiz[1].correct]}
-                  </div>
-                )}
-              </div>
-            </FrameImage>
-            <FrameButton>Next Question</FrameButton>
-          </FrameContainer>
-        </div>
+        <AnswerContainer
+          previousFrame={previousFrame}
+          quiz={quiz}
+          state={state}
+          position={1}
+        />
       );
 
     case "question-3":
@@ -370,11 +243,8 @@ export default async function Home({
             state={state}
             previousFrame={previousFrame}
           >
-            <FrameImage>
-              <div tw="flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img src={quiz[2] && quiz[2].imageURL} alt="Image" />
-              </div>
-            </FrameImage>
+            {quiz[2] && <FrameImage src={quiz[2]?.imageURL}></FrameImage>}
+
             {
               quiz[2]?.answers.map((answer, index) => (
                 <FrameButton key={index}>{answer}</FrameButton>
@@ -387,72 +257,12 @@ export default async function Home({
     case "answer-3":
       await redis.set("answer-3", state.userAnswer);
       return (
-        <div>
-          <FrameContainer
-            pathname="/examples/multi-page"
-            postUrl="/examples/multi-page/frames"
-            state={state}
-            previousFrame={previousFrame}
-          >
-            <FrameImage>
-              <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img
-                  tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
-                  alt="bg"
-                />
-                {state.userAnswer === quiz[2]?.correct ? (
-                  <div tw="flex flex-row justify-center items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="80"
-                      height="80"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#19b82c"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="lucide lucide-check-circle-2"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                    <h1 tw="text-[50px] text-[#19b82c] pl-5">
-                      {quiz[2]?.answers[state.userAnswer as number]}
-                    </h1>
-                  </div>
-                ) : (
-                  <div tw="flex flex-col">
-                    <h1 tw="text-[60px] flex flex-row justify-center items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="80"
-                        height="80"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#b81929"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="lucide lucide-x-circle"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="m15 9-6 6" />
-                        <path d="m9 9 6 6" />
-                      </svg>
-                      <h1 tw="text-[60px] text-[#b81929] pl-10">
-                        {quiz[2]?.answers[state.userAnswer as number]}
-                      </h1>
-                    </h1>
-                    Correct answer: {quiz[2]?.answers[quiz[2].correct]}
-                  </div>
-                )}
-              </div>
-            </FrameImage>
-            <FrameButton>Next Question</FrameButton>
-          </FrameContainer>
-        </div>
+        <AnswerContainer
+          previousFrame={previousFrame}
+          quiz={quiz}
+          state={state}
+          position={2}
+        />
       );
 
     case "question-4":
@@ -464,11 +274,8 @@ export default async function Home({
             state={state}
             previousFrame={previousFrame}
           >
-            <FrameImage>
-              <div tw="flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img src={quiz[3] && quiz[3].imageURL} alt="Image" />
-              </div>
-            </FrameImage>
+            {quiz[3] && <FrameImage src={quiz[3]?.imageURL}></FrameImage>}
+
             {
               quiz[3]?.answers.map((answer, index) => (
                 <FrameButton key={index}>{answer}</FrameButton>
@@ -481,72 +288,12 @@ export default async function Home({
     case "answer-4":
       await redis.set("answer-4", state.userAnswer);
       return (
-        <div>
-          <FrameContainer
-            pathname="/examples/multi-page"
-            postUrl="/examples/multi-page/frames"
-            state={state}
-            previousFrame={previousFrame}
-          >
-            <FrameImage>
-              <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img
-                  tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
-                  alt="bg"
-                />
-                {state.userAnswer === quiz[3]?.correct ? (
-                  <div tw="flex flex-row justify-center items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="80"
-                      height="80"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#19b82c"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="lucide lucide-check-circle-2"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                    <h1 tw="text-[50px] text-[#19b82c] pl-5">
-                      {quiz[3]?.answers[state.userAnswer as number]}
-                    </h1>
-                  </div>
-                ) : (
-                  <div tw="flex flex-col">
-                    <h1 tw="text-[60px] flex flex-row justify-center items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="80"
-                        height="80"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#b81929"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="lucide lucide-x-circle"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="m15 9-6 6" />
-                        <path d="m9 9 6 6" />
-                      </svg>
-                      <h1 tw="text-[60px] text-[#b81929] pl-10">
-                        {quiz[3]?.answers[state.userAnswer as number]}
-                      </h1>
-                    </h1>
-                    Correct answer: {quiz[3]?.answers[quiz[3].correct]}
-                  </div>
-                )}
-              </div>
-            </FrameImage>
-            <FrameButton>Next Question</FrameButton>
-          </FrameContainer>
-        </div>
+        <AnswerContainer
+          previousFrame={previousFrame}
+          quiz={quiz}
+          state={state}
+          position={3}
+        />
       );
 
     case "question-5":
@@ -558,11 +305,8 @@ export default async function Home({
             state={state}
             previousFrame={previousFrame}
           >
-            <FrameImage>
-              <div tw="flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img src={quiz[4] && quiz[4].imageURL} alt="Image" />
-              </div>
-            </FrameImage>
+            {quiz[4] && <FrameImage src={quiz[4]?.imageURL}></FrameImage>}
+
             {
               quiz[4]?.answers.map((answer, index) => (
                 <FrameButton key={index}>{answer}</FrameButton>
@@ -575,72 +319,12 @@ export default async function Home({
     case "answer-5":
       await redis.set("answer-5", state.userAnswer);
       return (
-        <div>
-          <FrameContainer
-            pathname="/examples/multi-page"
-            postUrl="/examples/multi-page/frames"
-            state={state}
-            previousFrame={previousFrame}
-          >
-            <FrameImage>
-              <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img
-                  tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
-                  alt="bg"
-                />
-                {state.userAnswer === quiz[4]?.correct ? (
-                  <div tw="flex flex-row justify-center items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="80"
-                      height="80"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#19b82c"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      className="lucide lucide-check-circle-2"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                    <h1 tw="text-[50px] text-[#19b82c] pl-5">
-                      {quiz[4]?.answers[state.userAnswer as number]}
-                    </h1>
-                  </div>
-                ) : (
-                  <div tw="flex flex-col">
-                    <h1 tw="text-[60px] flex flex-row justify-center items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="80"
-                        height="80"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#b81929"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="lucide lucide-x-circle"
-                      >
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="m15 9-6 6" />
-                        <path d="m9 9 6 6" />
-                      </svg>
-                      <h1 tw="text-[60px] text-[#b81929] pl-10">
-                        {quiz[4]?.answers[state.userAnswer as number]}
-                      </h1>
-                    </h1>
-                    Correct answer: {quiz[4]?.answers[quiz[4].correct]}
-                  </div>
-                )}
-              </div>
-            </FrameImage>
-            <FrameButton>Next Question</FrameButton>
-          </FrameContainer>
-        </div>
+        <AnswerContainer
+          previousFrame={previousFrame}
+          quiz={quiz}
+          state={state}
+          position={4}
+        />
       );
 
     case "finish":
@@ -693,12 +377,13 @@ export default async function Home({
             previousFrame={previousFrame}
           >
             <FrameImage>
-              <div tw="relative flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img
-                  tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
-                  alt="bg"
-                />
+              <div
+                tw="relative flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(78,4,100,1) 100%)",
+                }}
+              >
                 <h1 tw="text-[50px]">Total Score: 130</h1>
               </div>
             </FrameImage>
@@ -718,12 +403,13 @@ export default async function Home({
             previousFrame={previousFrame}
           >
             <FrameImage>
-              <div tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white">
-                <img
-                  tw="absolute top-0 m-auto"
-                  src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
-                  alt="bg"
-                />
+              <div
+                tw="flex relative flex-col bg-gray-600 h-full w-full justify-center items-center text-white"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(78,4,100,1) 100%)",
+                }}
+              >
                 <h1 tw="absolute top-0 m-auto text-[40px]">LEADERBOARD</h1>
                 <div tw="flex flex-col max-w-full w-full h-full justify-between items-start mt-20">
                   <div tw="flex flex-row justify-start items-center w-full h-[100px] border-b border-white px-5">
@@ -788,12 +474,13 @@ export default async function Home({
         previousFrame={previousFrame}
       >
         <FrameImage>
-          <div tw="flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white relative">
-            <img
-              tw="absolute top-0 m-auto"
-              src="https://ucarecdn.com/ae1e7146-174e-4683-9c95-7e7a2ce5e7ed/Inserirumsubttulo1.png"
-              alt="bg"
-            />
+          <div
+            tw="flex flex-col bg-gray-600 h-full w-full justify-center items-center text-white relative"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(78,4,100,1) 100%)",
+            }}
+          >
             <img
               width="400"
               height="100"
