@@ -239,16 +239,7 @@ export default async function Home({
         (item) => item.userName === frameMessage?.requesterUserData?.username
       );
 
-      if (userIndex > -1) {
-        // User exists, update score if the new score is higher
-        const actualScore = leaderBoardData.scores[userIndex];
-        if (actualScore) {
-          if (totalScore > actualScore.score) {
-            actualScore.score = totalScore;
-          }
-        }
-      } else {
-        // User doesn't exist, add them with the current score
+      if (userIndex === -1) {
         leaderBoardData.scores.push({
           userName: frameMessage?.requesterUserData?.username as string,
           score: totalScore,
@@ -275,12 +266,7 @@ export default async function Home({
               </div>
             </FrameImage>
             <FrameButton>TRY AGAIN</FrameButton>
-            <FrameButton
-              action="link"
-              target={`${process.env.NEXT_PUBLIC_HOST}/leaderboard`}
-            >
-              SEE LEADERBOARD
-            </FrameButton>
+            <FrameButton>SEE LEADERBOARD</FrameButton>
           </FrameContainer>
         </div>
       );
@@ -307,7 +293,12 @@ export default async function Home({
               </div>
             </FrameImage>
             <FrameButton>TRY AGAIN</FrameButton>
-            <FrameButton>SEE MORE</FrameButton>
+            <FrameButton
+              action="link"
+              target={`${process.env.NEXT_PUBLIC_HOST}/leaderboard`}
+            >
+              SEE MORE
+            </FrameButton>
           </FrameContainer>
         </div>
       );
