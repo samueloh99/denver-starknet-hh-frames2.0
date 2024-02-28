@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 import { redis } from "../examples/multi-page/components/redis/config";
 import { Leaderboard } from "../examples/multi-page/page";
-import { Star, UserRound } from "lucide-react";
+import { UserRound } from "lucide-react";
 
 export default async function LeaderboardPage() {
   const leaderBoardData: Leaderboard | null = await redis.get(
@@ -11,7 +11,7 @@ export default async function LeaderboardPage() {
   if (!leaderBoardData) return <div>Loading...</div>;
 
   return (
-    <div className="flex w-full h-screen justify-center items-start bg-stone-800 text-white">
+    <div className="flex w-full h-full justify-center items-start bg-stone-800 text-white">
       <div className="flex flex-col justify-center items-center w-full h-full">
         <h1>Leaderboard</h1>
 
